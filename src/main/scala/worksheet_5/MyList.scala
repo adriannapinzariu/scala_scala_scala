@@ -2,6 +2,7 @@ trait MyList[+X]
 //case object MyNil extends MyList[Nothing]
 //case class MyCons[+X] ()
 
+
 def length [X] (xs:MyList[X]) : Int = {
     xs match { // pattern match
         case MyNil => 0 // empty list
@@ -27,8 +28,6 @@ def length [X] (xs: MyList[X]) : Int = {
 }
 */
 
-
-
 def toList [X] (xs:MyList[X]) : List[X] = {
     xs match {
         case MyNil => 0
@@ -51,6 +50,7 @@ def toList [X] (xs:MyList[X]) : List[X] = {
     }
 }
 
+/*
 def toList [X] (xs: MyList[X]): List[X] {
     xs match {
         case MyNil => Nil; // don't forget to return Nil because it's a list and not an int type!
@@ -66,7 +66,7 @@ def fromList [X] (xs: List[X]): MyList[X] {
         // as its normal it rolls it by recursively calling cons (head, mylist(tail));
     }
 }
-
+*/
 
 
 // MyList to list
@@ -88,25 +88,18 @@ def fromList [X] (xs: List[X]): MyList[X] {
 // SWAP EVERYTHING FROM MYLIST TO LIST AND VICE VERSA
 
 
-
-
-
-
-
-
-
-
-
-
-
-def fromList [X] (xs:List[X]) : MyList[X] = {
-
-}
-
+// connect two lists
 def append [X] (xs:MyList[X], ys:MyList[X]) : MyList[X] = {
-
+    xs match {
+        case MyNil => ys;
+        // at its base it returns the last element of the 2nd list ys
+        case MyCons(z, zs) => MyCons(z, append(zs, ys))
+                            // the MyCons creates a new list
+                            // Each time MyCons(z, append(zs, ys)) is executed, it constructs a new instance of the MyList type. 
+                            // Goes to base ys and then appends each element of xs backwards one by one.
+        // NO: case Nil => MyNil;
+        // case MyCons(y, ys) => y ::: append(zs, ys);
+    }
 }
 
-def map [X,Y] (xs:MyList[X], f:X=>Y) : MyList[X] = {
-
-}
+// your last case must always be something new thats not in the parameters
