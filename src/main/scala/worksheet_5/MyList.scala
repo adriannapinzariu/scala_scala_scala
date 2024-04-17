@@ -7,7 +7,7 @@ case class MyCons[+X] (head:X, tail:MyList[X]) extends MyList[X]
 /* 
 trait MyList[+X]
 case object MyNil extends MyList[Nothing]
-case object MyCons[+X] (head:X, tail:MyList[X]) extends MyList[X] 
+case class MyCons[+X] (head:X, tail:MyList[X]) extends MyList[X] 
 */
 
 def length [X] (xs:MyList[X]) : Int = {
