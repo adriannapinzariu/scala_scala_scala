@@ -51,7 +51,7 @@ def toList [X] (xs:MyList[X]) : List[X] = {
 }
 
 /*
-def toList [X] (xs: MyList[X]): List[X] {
+def toList [X] (xs: MyList[X]): List[X] = {
     xs match {
         case MyNil => Nil; // don't forget to return Nil because it's a list and not an int type!
         case MyCons(y, ys) => y::toList(ys);
@@ -59,7 +59,7 @@ def toList [X] (xs: MyList[X]): List[X] {
     }
 }
 
-def fromList [X] (xs: List[X]): MyList[X] {
+def fromList [X] (xs: List[X]): MyList[X] = {
     xs match {
         case MyNil => Nil;
         case y:ys => MyCons (y, fromList(ys));
@@ -70,7 +70,7 @@ def fromList [X] (xs: List[X]): MyList[X] {
 
 
 // MyList to list
-def toList [X] (xs: MyList[X]): List[X] {
+def toList [X] (xs: MyList[X]): List[X] = {
     xs match {
         case MyNil => Nil;
         case MyCons(head, tail) => head :: toList(tail);
@@ -78,7 +78,7 @@ def toList [X] (xs: MyList[X]): List[X] {
 }
 
 // list to MyList
-def fromList [X] (xs: List[X]): MyList[X] {
+def fromList [X] (xs: List[X]): MyList[X] = {
     xs match {
         case Nil => MyNil;
         case head :: tail => MyCons(head, fromList(tail));
@@ -103,8 +103,7 @@ def append [X] (xs:MyList[X], ys:MyList[X]) : MyList[X] = {
 }
 */
 
-
-def append [X] (xs: MyList[X], ys: MyList[X]): MyList[X] {
+def append [X] (xs: MyList[X], ys: MyList[X]): MyList[X] = {
     xs match {
         case MyNil => ys;
         case MyCons(z, zs) => MyCons(z, append(zs, ys));
@@ -112,3 +111,14 @@ def append [X] (xs: MyList[X], ys: MyList[X]): MyList[X] {
 }
 
 // your last case must always be something new thats not in the parameters
+
+
+def map[X,Y] (xs:MyList[X], f:X=>Y): MyList[Y] = {
+    xs match {
+        case MyNil => MyNil
+        case MyCons(y, ys) => MyCons(f(y), map(ys, f));  
+                                // you modify each individual element so thats why you do it to the head of each one in f(y)
+                                // map(ys, f) calls tail recursively  
+                                // f is the 2nd param bc the 2nd param in function def is f
+    }
+}
