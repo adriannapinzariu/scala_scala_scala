@@ -1,7 +1,14 @@
 trait MyList[+X]
-//case object MyNil extends MyList[Nothing]
-//case class MyCons[+X] ()
+case object MyNil extends MyList[Nothing]
+case class MyCons[+X] (head:X, tail:MyList[X]) extends MyList[X]
 
+
+// Go Back to Creating One of These Later
+/* 
+trait MyList[+X]
+case object MyNil extends MyList[Nothing]
+case object MyCons[+X] (head:X, tail:MyList[X]) extends MyList[X] 
+*/
 
 def length [X] (xs:MyList[X]) : Int = {
     xs match { // pattern match
