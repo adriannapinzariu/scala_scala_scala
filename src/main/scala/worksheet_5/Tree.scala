@@ -43,7 +43,7 @@ def insert [X] (x:X, t:Tree[X], lt:(X,X)=>Boolean) : Tree[X] = {
     }
 }
 
-
+/*
 def insert [X] (x:X, t:Tree[X], lt:(X,X)=>Boolean): Tree[X] = {
     t match {
         case Leaf => Node(Leaf, x, Leaf);
@@ -52,3 +52,14 @@ def insert [X] (x:X, t:Tree[X], lt:(X,X)=>Boolean): Tree[X] = {
         case Node(left, mid, right) if (x == mid) => Node(left, mid, right);
     }
 }
+*/
+
+
+def insert [X] (x:X, t:Tree[X], lt:(X,X)=>Boolean) : Tree[X] = {
+    t match {
+        case Leaf => Node(Leaf, x, Leaf);
+        case Node(left, mid, right) if (lt(x, mid)) => Node(insert(x, left, lt), mid, right);
+        case Node(left, mid, right) if (lt(mid, x)) => Node(left, mid, insert(x, right, lt));
+        case Node(left, mid, right) if (mid == x) => Node(left, mid, right);
+    }
+} 
