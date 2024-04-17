@@ -87,7 +87,7 @@ def fromList [X] (xs: List[X]): MyList[X] {
 
 // SWAP EVERYTHING FROM MYLIST TO LIST AND VICE VERSA
 
-
+/*
 // connect two lists
 def append [X] (xs:MyList[X], ys:MyList[X]) : MyList[X] = {
     xs match {
@@ -99,6 +99,15 @@ def append [X] (xs:MyList[X], ys:MyList[X]) : MyList[X] = {
                             // Goes to base ys and then appends each element of xs backwards one by one.
         // NO: case Nil => MyNil;
         // case MyCons(y, ys) => y ::: append(zs, ys);
+    }
+}
+*/
+
+
+def append [X] (xs: MyList[X], ys: MyList[X]): MyList[X] {
+    xs match {
+        case MyNil => ys;
+        case MyCons(z, zs) => MyCons(z, append(zs, ys));
     }
 }
 
