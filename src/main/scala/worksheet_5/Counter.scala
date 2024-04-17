@@ -46,6 +46,7 @@ class Counter (initial:Int) {
 }
 */
 
+
 object Counter {
   private var numCounters = 0;
   def getNumCounters() : Int = numCounters;
@@ -60,3 +61,14 @@ class Counter (initial:Int) {
   def getId() : Int = id;
   def getNextCount() : Int = { val temp = count; count += 1; temp}
 }
+
+
+
+
+/*
+
+object Counter {
+  private var numCounters = 0;
+
+}
+*/

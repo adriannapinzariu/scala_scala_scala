@@ -5,7 +5,7 @@ trait MyList[+X]
 def length [X] (xs:MyList[X]) : Int = {
     xs match { // pattern match
         case MyNil => 0 // empty list
-        case MyCons(_, ys) => 1 + length(ys)
+        case MyCons(_, tail) => 1 + length(tail)
         // (_, ys)
             // _ is when you ignore the head of the list
             // ys is the tail of the list (everything after the head)
@@ -17,7 +17,19 @@ def length [X] (xs:MyList[X]) : Int = {
     }
 }
 
-def toList [X] (xs:MyList[X]) : Int = {
+/*
+def length [X] (xs: MyList[X]) : Int = {
+    xs match {
+        case MyNil => 0;
+        // case (y:ys) => 1 + length(ys);
+        case MyCons(_, ys) => 1 + length(ys);
+    }
+}
+*/
+
+
+
+def toList [X] (xs:MyList[X]) : List[X] = {
     xs match {
         case MyNil => 0
         case MyCons(y, ys) => y::toList(ys)
@@ -38,6 +50,33 @@ def toList [X] (xs:MyList[X]) : Int = {
             //Return from First Call: Returns 1 :: List(2, 3) which results in List(1, 2, 3).
     }
 }
+
+def toList [X] (xs: MyList[X]): List[X] {
+    xs match {
+        case MyNil => Nil; // don't forget to return Nil because it's a list and not an int type!
+        case MyCons(y, ys) => y::toList(ys);
+        // if its a cons it unrolls it by prepending
+    }
+}
+
+def fromList [X] (xs: List[X]): MyList[X] {
+    xs match {
+        case MyNil => Nil;
+        case y:ys => MyCons (y, fromList(ys));
+        // as its normal it rolls it by recursively calling cons (head, mylist(tail));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 def fromList [X] (xs:List[X]) : MyList[X] = {
 
