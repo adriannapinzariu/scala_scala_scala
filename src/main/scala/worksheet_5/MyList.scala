@@ -122,3 +122,12 @@ def map[X,Y] (xs:MyList[X], f:X=>Y): MyList[Y] = {
                                 // f is the 2nd param bc the 2nd param in function def is f
     }
 }
+
+def map[X,Y] (xs:MyList[X], f:X=>Y) : MyList[Y]= {
+    xs match {
+        case MyNil => MyNil;
+            // 2 lists
+                // so you have to return MyNil when constructing the new list
+        case MyCons(head, tail) => MyCons(f(head), map(tail, f));
+    }
+}
