@@ -34,9 +34,10 @@ def insert [X] (x:X, t:Tree[X], lt:(X,X)=>Boolean) : Tree[X] = {
         case Leaf => Node(Leaf, x, Leaf);
             // encountering an empty leaf means you have reached a point of insertion
             // you put x because it's the variable you want to insert
-        case Node (left, mid, right) if (lt (x, mid)) => Node(insert(x, left, lt), c, t2);
-            // lt is less than
-        case Node (left, mid, right) if (lt (mid, x)) => Node(insert(x, right, lt));
+        case Node (left, mid, right) if (lt (x, mid)) => Node(insert(x, left, lt), mid, right);
+            // lt is less than put left
+        case Node (left, mid, right) if (lt (mid, x)) => Node(left, mid, insert(x, right, lt));
+            // if greater than move right
         case Node (left, mid, right) if (x == mid) => Node(left, mid, right);
             // NO INSERTION BECAUSE DUPLICATE
     }
