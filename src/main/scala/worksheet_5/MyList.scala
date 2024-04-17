@@ -69,6 +69,27 @@ def fromList [X] (xs: List[X]): MyList[X] {
 
 
 
+// MyList to list
+def toList [X] (xs: MyList[X]): List[X] {
+    xs match {
+        case MyNil => Nil;
+        case MyCons(head, tail) => head :: toList(tail);
+    }
+}
+
+// list to MyList
+def fromList [X] (xs: List[X]): MyList[X] {
+    xs match {
+        case Nil => MyNil;
+        case head :: tail => MyCons(head, fromList(tail));
+    }
+}
+
+// SWAP EVERYTHING FROM MYLIST TO LIST AND VICE VERSA
+
+
+
+
 
 
 
