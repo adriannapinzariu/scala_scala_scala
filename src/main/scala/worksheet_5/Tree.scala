@@ -20,3 +20,12 @@ def size [X] (t:Tree[X]): Int = {
     }
 }
 
+
+
+
+def size [X] (t: Tree[X]): Int = {
+    t match {
+        case Leaf => 0;
+        case Node(left, _, right) => 1 + size(left) + size(right);
+    }
+}
