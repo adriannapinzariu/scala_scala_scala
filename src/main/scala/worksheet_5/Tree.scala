@@ -69,7 +69,7 @@ def insert [X] (x:X, t:Tree[X], lt:(X,X)=>Boolean) : Tree[X] = {
 // inorder
 def inorder [X] (t:Tree[X]) : List[X] = {
     t match {
-        case Leaf => Nil
+        case Leaf => Nil;
         case Node (left, mid, right) => inorder(left) ::: List(mid) ::: inorder(right);
     }
 }
