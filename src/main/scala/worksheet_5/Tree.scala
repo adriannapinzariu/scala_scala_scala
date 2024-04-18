@@ -63,3 +63,29 @@ def insert [X] (x:X, t:Tree[X], lt:(X,X)=>Boolean) : Tree[X] = {
         case Node(left, mid, right) if (mid == x) => Node(left, mid, right);
     }
 } 
+
+// you append traversals together based on the order of nodes you would want to visit
+
+// inorder
+def inorder [X] (t:Tree[X]) : List[X] = {
+    t match {
+        case Leaf => Nil
+        case Node (left, mid, right) => inorder(left) ::: List(mid) ::: inorder(right);
+    }
+}
+
+// preorder
+def preorder [X] (t:Tree[X]) : List[X] = {
+    t match {
+        case Leaf => Nil;
+        case Node (left, mid, right) => List(mid) ::: preorder(left) ::: preorder(right);
+    }
+}
+
+// postorder 
+def postorder [X] (t:Tree[X]) : List[X] = {
+    t match {
+        case Leaf => Nil;
+        case Node (left, mid, right) => postorder(left) ::: postorder(right) ::: List(mid);
+    }
+}
